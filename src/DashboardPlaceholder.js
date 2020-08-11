@@ -2,7 +2,7 @@ import React from 'react';
 
 const DashboardPlaceholder = () => {
   return (
-    <div class='dashboard-placeholder'>
+    <div className='dashboard-placeholder'>
       Dashboard is empty
     </div>
   );
