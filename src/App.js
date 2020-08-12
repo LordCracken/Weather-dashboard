@@ -14,6 +14,10 @@ class App extends React.Component {
     }
   }
 
+  renderDashboard() {
+    return this.state.weatherData.size > 0 ? <Dashboard /> : <DashboardPlaceholder />;
+  }
+
   setValue(e) {
     e.target.value = e.target.value.replace(/[^a-zA-Z0-9-]/gi, '');
     this.setState({
@@ -37,12 +41,12 @@ class App extends React.Component {
           cityData.name = data.name;
           cityData.temp = Math.round(+data.main.temp - 273.15);
           cityData.icon = data.weather[0].icon;
-          this.state.weatherData.set(this.state.value.toUpperCase(), cityData);
+          this.setState(() => this.state.weatherData.set(this.state.value.toUpperCase(), cityData));
       })
       .catch(error => {
         console.error(error);
         cityData.name = 'Error';
-        this.state.weatherData.set(this.state.value, cityData);
+        this.setState(() => this.state.weatherData.set(this.state.value.toUpperCase(), cityData));
       });
     } else if (e.target.matches('#clear-button')) {
       this.setState({ value: '' });
@@ -50,11 +54,11 @@ class App extends React.Component {
   }
 
   render() {
+    const outputDashboard = this.renderDashboard();
     return (
       <>
         <CityInput onChange={e => this.setValue(e)} onClick={e => this.handleAddWeather(e)} value={this.state.value} />
-        <DashboardPlaceholder />
-        <Dashboard />
+        {outputDashboard}
       </>
     );
   }
