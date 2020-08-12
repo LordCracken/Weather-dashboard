@@ -7,8 +7,8 @@ const CityInput = props => {
         onChange={props.onChange}
         value={props.value}
       />
-      <button onClick={props.handleAddWeather}>Add</button>
-      <button onClick={() => this.setState({ value: '' })}>Clear</button>
+      <button id="add-button" onClick={props.onClick}>Add</button>
+      <button id="clear-button" onClick={props.onClick}>Clear</button>
     </div>
   );
 };
