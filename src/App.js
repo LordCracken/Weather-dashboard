@@ -51,11 +51,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <>
         <CityInput onChange={e => this.setValue(e)} onClick={e => this.handleAddWeather(e)} value={this.state.value} />
         <DashboardPlaceholder />
         <Dashboard />
-      </div>
+      </>
     );
   }
 }
