@@ -1,21 +1,18 @@
 import React from 'react';
+import Weather from './Weather';
 
-const Dashboard = () => (
-  <div className='dashboard'>
-    
-    <div className='weather'>
-      <h3>Moscow</h3>
-      <div>+13 ℃</div>
-      <img src='http://openweathermap.org/img/w/10d.png' alt="weather icon" />
-      <div className='weather__delete'>Delete</div>
+const Dashboard = props => {
+  const data = [];
+  for (const item of props.data.values()) {
+    data.push(item);
+  }
+  return (
+    <div className='dashboard'>
+      {
+        data.map(item => <Weather data={item} key={item.key} onClick={props.onClick} />)
+      }
     </div>
-    <div className='weather'>
-      <h3>Moscow</h3>
-      <div>+13 ℃</div>
-      <img src='http://openweathermap.org/img/w/10d.png' alt="weather icon" />
-      <div className='weather__delete'>Delete</div>
-    </div>
-  </div>
-);
+  );
+}
 
 export default Dashboard;
