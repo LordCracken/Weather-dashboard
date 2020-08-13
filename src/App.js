@@ -2,8 +2,7 @@ import React from 'react';
 import CityInput from './CityInput'
 import DashboardPlaceholder from './DashboardPlaceholder'
 import Dashboard from './Dashboard';
-
-import './App.css';
+import './css/style.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,7 +26,7 @@ class App extends React.Component {
 
   handleAddWeather(e) {
     const cityData = {};
-    if (e.target.matches('#add-button')) {
+    if (e.target.matches('#button-add')) {
       fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.value}&appid=58ca83824e1c0f434d211a07e20e3ad0&units=metric`)
       .then(response => {
         if (response.status !== 200) throw new Error('status network not 200');
@@ -52,7 +51,7 @@ class App extends React.Component {
           return this.state.weatherData.set(this.state.value.toUpperCase(), cityData)
         });
       });
-    } else if (e.target.matches('#clear-button')) {
+    } else if (e.target.matches('#button-clear')) {
       this.setState({ value: '' });
     } else if (e.target.matches('.weather__delete')) {
       this.state.weatherData.delete(`${e.target.closest('.weather').dataset.key.toUpperCase()}`)
